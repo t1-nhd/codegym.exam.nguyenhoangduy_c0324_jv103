@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <link rel="stylesheet" href="output.css">
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/5cb5a0e7f6.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="w-full h-[50px] bg-gray-200 flex justify-between" th:fragment="index-header">
+    <div class="ms-3">
+        <h2 class="font-bold uppercase">Quản lý sản phẩm</h2>
+    </div>
+    <div class="me-3 flex items-center">
+        <a th:href="@{/create}" class="text-decoration-none border rounded bg-black text-white align-middle p-1">Thêm sản phẩm</a>
+    </div>
+</div>
+</body>
+</html>

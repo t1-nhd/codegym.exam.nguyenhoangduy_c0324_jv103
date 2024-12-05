@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create</title>
+</head>
+<body>
+    <div th:insert="layout/layout::index-header"></div>
+    <div class="w-full">
+        <div class="w-1/2">
+            <div class="w-100">
+                <h3>Các thuộc tính có dấu <span class="text-red-500">*</span> là bắt buộc!</h3>
+            </div>
+            <form th:action="@{/save}" class="w-full" th:object="${product}" method="post">
+                <div class="w-100">
+                    <label for="name">Tên sản phẩm <span class="text-red-500">*</span></label>
+                    <input required type="text" th:field="*{name}" id="name" placeholder="Nhập tên sản phẩm">
+                </div>
+                <div class="w-100">
+                    <label for="price">Giá bắt đầu  <span class="text-red-500">*</span></label>
+                    <input required type="text" pattern="[0-9]+" th:field="*{price}" id="price" placeholder="Nhập giá bắt đầu">
+                </div>
+                <div class="w-100">
+                    <label for="category">Loại sản phẩm</label>
+                    <select th:field="*{category}" id="category" class="w-10/12 p-1 border rounded">
+                        <option selected value="">--Chọn--</option>
+                        <option th:each="c : ${categories}" th:text="${c.name}" th:value="${c.cid}"></option>
+                    </select>
+                </div>
+                <div class="w-100">
+                    <input type="submit" value="Thêm sản phẩm">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

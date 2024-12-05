@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+    <meta charset="UTF-8">
+    <title>Sản phẩm</title>
+</head>
+<body>
+<div th:insert="layout/layout::index-header"></div>
+<div class="w-full">
+    <div class="w-full">
+        <div class="w-full ms-3">
+            <h3>Tìm kiếm sản phẩm</h3>
+        </div>
+        <div class="w-full py-5 flex justify-center items-center">
+            <form th:action="@{/}" method="get" class="w-11/12 flex">
+                <div class="block w-3/12">
+                    <label for="name">Tên sản phẩm</label>
+                    <input type="text" name="name" id="name" class="w-10/12 p-1 border rounded"  placeholder="Nhập tên sản phẩm">
+                </div>
+                <div class="block w-2/12">
+                    <label for="price">Giá bắt đầu</label>
+                    <input type="text" name="price" id="price" class="w-10/12 p-1 border rounded"  placeholder="Nhập giá bắt đầu">
+                </div>
+                <div class="block w-2/12">
+                    <label for="category">Loại sản phẩm</label>
+                    <select name="category" id="category" class="w-10/12 p-1 border rounded">
+                        <option selected>--Chọn--</option>
+                        <option th:each="c : ${categories}" th:text="${c.name}" th:value="${c.name}"></option>
+                    </select>
+                </div>
+                <div class="block w-2/12">
+                    <div class="w-full">
+                        Xóa tìm kiếm
+                    </div>
+                    <div class="w-full">
+                        <button type="reset" id="reset-button" class="border-blue-500 bg-blue-500 hover:bg-blue-700 text-white font-bold p-1 rounded">
+                            Button
+                        </button>
+                    </div>
+                </div>
+                <div class="block w-3/12">
+                    <div class="w-full text-white invisible">sadsadsa</div>
+                    <div class="w-full">
+                        <button type="submit" class="border-blue-500 bg-blue-500 hover:bg-blue-700 text-white font-bold p-1 rounded">
+                            Tìm
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="w-full flex justify-center">
+        <table class="w-11/12 border-collapse border border-gray-200 ">
+            <thead>
+            <tr class="text-white divide-x">
+                <th class="py-2 bg-blue-500">STT</th>
+                <th class="py-2 bg-blue-500">Chọn</th>
+                <th class="py-2 bg-blue-500">Tên sản phẩm</th>
+                <th class="py-2 bg-blue-500">Giá bắt đầu</th>
+                <th class="py-2 bg-blue-500">Loại sản phẩm</th>
+                <th class="py-2 bg-blue-500">Tình trạng</th>
+                <th class="py-2 bg-blue-500">Hành động</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="p, index : ${products}" class="border-b divide-x">
+                <td class="p-2 text-center" th:text="${index.count}"></td>
+                <td class="p-2 text-center">
+                    <input type="checkbox" name="checkbox">
+                </td>
+                <td class="p-2 " th:text="${p.name}"></td>
+                <td class="p-2 text-end" th:text="${#numbers.formatInteger(p.price, 3, 'COMMA')} + '₫'"></td>
+                <td class="p-2 text-center" th:text="${p.category.name}"></td>
+                <td class="p-2 text-center" th:text="${p.status==null?'Chờ duyệt':p.status}"></td>
+                <td class="p-2 text-center"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
